@@ -13,7 +13,11 @@ public class BoundaryPrendreEtal {
 	}
 
 	public void prendreEtal(String nomVendeur) {
-		//TODO a completer
+		boolean nomVendeurConnu = controlPrendreEtal.verifierIdentite(nomVendeur);
+		StringBuilder chaine = new StringBuilder();
+		if(nomVendeurConnu) {
+			chaine.append("Je suis désolé, " + nomVendeur + " mais il faut être un habitant d'ici.");
+		}
 	}
 
 	private void installerVendeur(String nomVendeur) {
