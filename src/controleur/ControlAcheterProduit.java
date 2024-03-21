@@ -15,5 +15,7 @@ public class ControlAcheterProduit {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
-	//TODO a completer
+	public Gaulois[] trouverEtalProduit(String produit) {
+		return village.rechercherVendeursProduit(produit);
+	}
 }
