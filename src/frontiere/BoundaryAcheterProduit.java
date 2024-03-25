@@ -26,24 +26,26 @@ public class BoundaryAcheterProduit {
 		}
 	}
 	
-	public void transaction(int quantiteAcheter, int quantite) {
+	public void negociation(String nomAcheteur, String nomVendeur,String nomProduit, int quantiteAcheter, int quantite) {
 		if (quantite == 0) {
-			quantiteAcheter = 0;
+			System.out.println(nomAcheteur + " veut acheter " + quantite + " " + nomProduit + ", malheureusement il n’y en a plus !”");
 		}
 		if (quantiteAcheter > quantite) {
-			quantiteAcheter = quantite;
+			System.out.println(nomAcheteur +" veut acheter " + quantiteAcheter + " " + nomProduit +", \n"
+					+ "malheureusement Bonemine n’en a plus que " + quantite + ".\n"
+					+ nomAcheteur + " achète tout le stock de " + nomVendeur + ".");
 		}
-		/*if (etalOccupe) {
-			quantite -= quantiteAcheter;
-		}*/
+		else
+			System.out.println(nomAcheteur + " achète " + quantiteAcheter + " " + nomProduit + " à " + nomVendeur + ".");
+
 	}
 	
-	public void recherche(String nomAcheteur) {
+	public void transaction(String nomAcheteur) {
 		Etal etal = null;   String produit;//initialisation du produit et de l'étal
 		produit = Clavier.entrerChaine("Quel produit voulez-vous acheter ?");
 		Gaulois[] gauloisVendeur = controlAcheterProduit.trouverVendeurProduit(produit);
 		try {
-			System.out.println("Chez quel commerçant voulez-vous acheter des " + produit +" ?\n");
+			System.out.println("Chez quel commerçant voulez-vous acheter des " + produit +" ?");
 			for(int i=0; i < gauloisVendeur.length ; i++)//Affichage des Marchands
 				if(controlAcheterProduit.verifierIdentite(gauloisVendeur[i].getNom()))
 					System.out.println((i+1)+" - " + gauloisVendeur[i].getNom() +"\n");
@@ -58,6 +60,7 @@ public class BoundaryAcheterProduit {
 			System.out.println("Désolé, personne ne vend ce produit au marché.");
 		}if(etal.isEtalOccupe() ) {
 			int quantity = Clavier.entrerEntier("Combien de fleurs voulez-vous acheter ?");
+			negociation(nomAcheteur, etal.getVendeur().getNom(),produit, quantity, etal.getQuantite());
 			etal.acheterProduit(quantity);
 		}
 	}
