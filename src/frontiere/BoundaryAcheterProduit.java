@@ -28,9 +28,9 @@ public class BoundaryAcheterProduit {
 	
 	public void negociation(String nomAcheteur, String nomVendeur,String nomProduit, int quantiteAcheter, int quantite) {
 		if (quantite == 0) {
-			System.out.println(nomAcheteur + " veut acheter " + quantite + " " + nomProduit + ", malheureusement il n’y en a plus !”");
+			System.out.println(nomAcheteur + " veut acheter " + quantiteAcheter + " " + nomProduit + ", malheureusement il n’y en a plus !”");
 		}
-		if (quantiteAcheter > quantite) {
+		else if (quantiteAcheter > quantite) {
 			System.out.println(nomAcheteur +" veut acheter " + quantiteAcheter + " " + nomProduit +", \n"
 					+ "malheureusement Bonemine n’en a plus que " + quantite + ".\n"
 					+ nomAcheteur + " achète tout le stock de " + nomVendeur + ".");
@@ -52,34 +52,22 @@ public class BoundaryAcheterProduit {
 			
 			int numVendeur = Clavier.entrerEntier("") -1;
 			if(controlAcheterProduit.verifierIdentite(gauloisVendeur[numVendeur].getNom())){//Choix et vérification de l'identité du marchand
-				System.out.println(nomAcheteur + "se déplace jusqu'à l'étal du vendeur " + gauloisVendeur[numVendeur].getNom());
-				etal = controlAcheterProduit.trouverEtal(gauloisVendeur[numVendeur].getNom());//récup
+				System.out.println(nomAcheteur + " se déplace jusqu'à l'étal du vendeur " + gauloisVendeur[numVendeur].getNom());
+				etal = controlAcheterProduit.trouverEtal(gauloisVendeur[numVendeur].getNom());
 			}else
 				commerceNonAutoriser(gauloisVendeur[numVendeur].getNom());
+			if(etal.isEtalOccupe() ) {
+				int quantity = Clavier.entrerEntier("Bonjour, " + nomAcheteur + " Combien de " + produit +" voulez-vous acheter ?");
+				negociation(nomAcheteur, etal.getVendeur().getNom(),produit, quantity, etal.getQuantite());
+				etal.acheterProduit(quantity);
+			}
 		} catch(NullPointerException e){
 			System.out.println("Désolé, personne ne vend ce produit au marché.");
-		}if(etal.isEtalOccupe() ) {
-			int quantity = Clavier.entrerEntier("Bonjour, " + nomAcheteur + "Combien de fleurs voulez-vous acheter ?");
-			negociation(nomAcheteur, etal.getVendeur().getNom(),produit, quantity, etal.getQuantite());
-			etal.acheterProduit(quantity);
 		}
 	}
 	
 }
-/*StringBuilder question = new StringBuilder();
-			question.append("1 - je veux acheter un produit.\n");
-			question.append("2 - je veux avoir une vue d'ensemble du marché.\n");
-			question.append("3 - quitter l'application.");
-			int choixUtilisateur = -1;
-			do {
-				choixUtilisateur = Clavier.entrerEntier(question.toString());
-				switch(choixUtilisateur)
-				case 1:
-					transaction(nomAcheteur);
-					break;
-				case 2:
-					
-					break;
-			} while(choixUtilisateur != 3);*/
+
+
 
 
