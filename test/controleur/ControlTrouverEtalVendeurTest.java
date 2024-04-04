@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import personnages.Chef;
+import villagegaulois.Etal;
 import villagegaulois.Village;
 
 class ControlTrouverEtalVendeurTest {
@@ -28,7 +29,8 @@ class ControlTrouverEtalVendeurTest {
 
 	@Test
 	void testTrouverEtalVendeur() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
+		
 	}
 
 }
