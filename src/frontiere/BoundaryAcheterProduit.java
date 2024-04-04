@@ -59,7 +59,7 @@ public class BoundaryAcheterProduit {
 		} catch(NullPointerException e){
 			System.out.println("Désolé, personne ne vend ce produit au marché.");
 		}if(etal.isEtalOccupe() ) {
-			int quantity = Clavier.entrerEntier("Combien de fleurs voulez-vous acheter ?");
+			int quantity = Clavier.entrerEntier("Bonjour, " + nomAcheteur + "Combien de fleurs voulez-vous acheter ?");
 			negociation(nomAcheteur, etal.getVendeur().getNom(),produit, quantity, etal.getQuantite());
 			etal.acheterProduit(quantity);
 		}
